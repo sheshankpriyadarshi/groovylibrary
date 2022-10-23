@@ -1,5 +1,7 @@
 import java.io.*;
 import groovy.io.*;
+import java.util.Calender;
+import java.text.SimpleDateFormat;
 
 @NonCPS
 def call(Map config = [:])
@@ -21,6 +23,13 @@ def call(Map config = [:])
         }
     
     }
+
+    date = new Date()
+    sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")
+    echo "Date and Time is: " + sdf.format(date)
+
+    echo "Build number is: ${BUILD_NUMBER}"
+
     if(config.changes != "false")
     {
         echo "Changes"

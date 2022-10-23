@@ -29,14 +29,14 @@ def call(Map config = [:])
 
     writer.writeLine("Build number is: ${BUILD_NUMBER}")
 
-    changeLogsets = currentBuild.changeSets
+    def changeLogsets = currentBuild.changeSets
 
      if(config.changes != "false")
     {
 
         for(change in changeLogsets)
         {
-            entries = change.items
+            def entries = change.items
 
             for(entry in entries)
             {

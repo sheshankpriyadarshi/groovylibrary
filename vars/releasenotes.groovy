@@ -30,6 +30,22 @@ def call(Map config = [:])
 
     echo "Build number is: ${BUILD_NUMBER}"
 
+    changeLogsets = currentBuild.changeLogsets
+
+    for(change in changeLogsets)
+    {
+        entries = change.items
+
+        for(entry in entries)
+        {
+            echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
+            for(file in entry.affectedFiles)
+            {
+                echo "${file.editType.name} ${file.path}"
+            }
+        }
+    }
+
     if(config.changes != "false")
     {
         echo "Changes"
